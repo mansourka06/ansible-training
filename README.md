@@ -19,7 +19,7 @@ Travaux pratiques d'apprentissage Ansible dans le cadrage d'un programme de form
 
 - **Inventaire et Variables  Ansible**
 
-- - **Création de playbooks Asible**
+- **Création de playbooks Asible**
 
 - **Templates, boucles et conditions**
 
