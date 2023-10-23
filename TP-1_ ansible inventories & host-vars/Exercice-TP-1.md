@@ -1,4 +1,4 @@
-# TP-1_ansible inventory
+# TP-1_ansible inventory and hosts vars
 
 ### Action réalisées :
 
