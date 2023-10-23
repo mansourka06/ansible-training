@@ -17,5 +17,5 @@ ansible -i hosts all -m setup
 
 ### Calling a variable
 ```bash
-ansible -i inventory client1 -m copy -a "dest=/home/vagrant/toto.txt content='Hello Mansour, Welcome to {{ env }}'"
+ansible -i inventory server1 -m copy -a "dest=/home/vagrant/toto.txt content='Hello Mansour, Welcome to {{ env }}'"
 ```
