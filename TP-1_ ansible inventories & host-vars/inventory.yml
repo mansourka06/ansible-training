@@ -7,9 +7,9 @@ prod:
         ansible_password: vagrant
         env: production
     hosts:
-        client1:
+        server1:
             ansible_host: 192.168.99.11
             ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-        client2:
+        server2:
             ansible_host: 192.168.99.12
             ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
