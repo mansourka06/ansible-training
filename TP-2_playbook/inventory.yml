@@ -1,0 +1,17 @@
+---
+all:
+    vars:
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+prod:
+    hosts:
+        server1:
+            ansible_host: 192.168.99.11
+        server2:
+            ansible_host: 192.168.99.12
+
+dev:
+    hosts:
+        dev1:
+            ansible_host: 192.168.99.21
+        dev2:
+            ansible_host: 192.168.99.22
