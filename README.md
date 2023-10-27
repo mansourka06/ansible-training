@@ -1,37 +1,39 @@
 # ansible-training
-Travaux pratiques d'apprentissage Ansible dans le cadrage d'un programme de formation sur les outils DevOps.
+Practical Ansible training as part of a DevOps training program.
 
 
-## Ansible, c'est quoi ?
+## What is Ansible?
 
-* Ansible est un outil DevOps open source qui peut aider les entreprises dans la gestion de la configuration, le déploiement, le provisionnement, etc. Il est facile à déployer ; il utilise SSH pour communiquer entre les serveurs. Il utilise le playbook pour décrire les tâches d’automatisation, et le playbook utilise un langage très simple, le YAML.
-
-
-* Ces derniers années, l'outil Ansible (by RedHat) a pris de l'ampleur sur le marché et a réussi à s'imposer comme l'outil de référence pour tout ce qui est Configuration Management.
-
-* La réalisation de ces différents TPs permet de maîtriser les fondamentaux de l'automatisation (l'industrialisation) des process de déploiement et de configuration.
-
-## Prérequis
-- [x] Avoir des bases sur **LINUX**
+* Ansible is an open source DevOps tool that can help companies with configuration management, deployment, provisioning and more. It's easy to deploy; it uses SSH to communicate between servers. It uses the playbook to describe automation tasks, and the playbook uses a very simple language, YAML.
 
 
-## Aspects traités:
+* In recent years, the Ansible tool (by RedHat) has been gaining ground on the market and has established itself as the benchmark tool for Configuration Management.
 
-- **Inventaire et Variables  Ansible**
+* These practical exercises will enable you to master the fundamentals of automating (industrializing) deployment and configuration processes.
 
-- **Création de playbooks Asible**
+## Prerequisites
 
-- **Templates, boucles et conditions**
+- [x] Basics knowledge of **LINUX**.
 
-- **Sécurite**
 
-- **Création de roles Ansible**
+## Aspects covered:
+
+- Ansible** inventory and variables
+
+- Creating Asible playbooks** **Templates, loops and conditions
+
+- Templates, loops and conditions** **Security
+
+- **Security**
+
+- Creating Ansible roles** **Ansible Tower/AWX
 
 - **Ansible Tower/AWX**
 
 ## Documentation
-- [Site Officiel Ansible](https://docs.ansible.com/ansible/latest/index.html)
+- [Official Ansible website](https://docs.ansible.com/ansible/latest/index.html)
 
 
-## Auteur
-Mansour KA :) 
+## Author(s)
+
+- [Mansour KA](https://github.com/mansourka06)
