@@ -9,7 +9,6 @@
   
   pre_tasks:
     - name: "Install some packages"
-      when: ansible_distribution == "CentOS"
       package:
         name: '{{ item }}'
         state: present
@@ -17,6 +16,7 @@
         - epel-release
         - wget
         - git
+      when: ansible_distribution == "CentOS"
 
     - name: "Download pip script"
       get_url:
