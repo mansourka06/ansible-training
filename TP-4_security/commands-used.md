@@ -1,23 +1,28 @@
-# Commands used for the playbook deployement
+# Used command to deploy the playbook in this topic
 
-## Vaulting the secret variables file
+## Vaulting the file contianing secret variables
 ```bash
 cd ansible-training/TP-4_security
 ansible-vault encrypt security/files/secrets/credentials.yml
 ```
 
-- command used to decrypt to secret variable file
+## Decrypting the file contianing secret variables
 ```bash
 cd ansible-training/TP-4_security
 ansible-vault decrypt security/files/secrets/credentials.yml
 ```
 
-## Running the playbook by asking vault password to acces vaulted vars
+## Running the playbook by asking the vault password
 ```bash
 ansible-playbook -i hosts --ask-vault-pass deploy.yml
 ```
 
-## Create inventory hosts file in /etc/hosts
+## Running the playbook without asking the vault password
+```bash
+ansible-playbook -i hosts deploy.yml
+```
+
+## Creating hosts inventory file
 ```bash
 sudo cat << EOF >> /etc/hosts
 192.168.99.11   prod-server1.local
@@ -25,7 +30,7 @@ sudo cat << EOF >> /etc/hosts
 EOF
 ```
 
-## Connexion to the servers via ssh
+## connexion to servers via ssh
 ```bash
 ssh-copy-id vagrant@prod-server1.local
 ssh-copy-id vagrant@dev-server1.local
