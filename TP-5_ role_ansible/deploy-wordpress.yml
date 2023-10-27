@@ -1,0 +1,16 @@
+---
+- name: "Deployement of wordpress"
+  hosts: prod
+  become: yes
+  vars:
+    system_user: vagrant
+  pre_tasks:
+    - name: "Ensure www-data user exists"
+      user:
+        name: www-data
+        state: present
+  
+  # running wordpress ansible role
+  roles:
+    - { role: ansible-role-containerized-wordpress }
+...
