@@ -1,0 +1,108 @@
+---
+- name: "Apache installation using docker"
+  hosts: prod
+  become: yes
+
+  # replaced by rsa key authentication
+  # vars_files:
+  #   - files/secrets/credentials.yml
+  
+  pre_tasks:
+  # Installation de plusieurs paquets sur CentOS
+    - name: Install some packages
+      when: ansible_distribution == "CentOS"
+      package:
+        name: '{{ item }}'
+        state: present
+      loop:
+        - epel-release
+        - wget
+        - git
+
+    # Téléchargement du script d'installation de pip pour Python 2.7
+    - name: download pip script
+      get_url:
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+        dest: /tmp/get-pip.py
+
+    # Installation de pip pour Python 2.7
+    - name: install python-pip
+      command: python2.7 /tmp/get-pip.py
+
+    # Création d'un lien symbolique pour pip
+    - name: Create a symbolic link for pip
+      file:
+        force: yes
+        src: /usr/local/bin/pip
+        dest: /usr/bin/pip
+        state: link
+
+    # Installation du module Python Docker
+    - name: Install docker python
+      pip:
+        name: docker-py
+
+    # Installation des dépendances de Docker
+    - name: Install Docker dependencies
+      ansible.builtin.yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    # Ajout du dépôt Docker
+    - name: Add Docker repo
+      ansible.builtin.yum_repository:
+        name: docker-ce-stable
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+
+    # Installation de Docker
+    - name: Install Docker
+      ansible.builtin.yum:
+        name: docker-ce
+        state: present
+
+    # Démarrage et activation du service Docker
+    - name: Start Docker service
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+  tasks:
+  # Copie du ficher template sur chaque machine
+    - name: Copy website template file
+      template:
+        src: index.html.j2
+        dest: /home/vagrant/index.html
+
+    # Création d'un conteneur Apache
+    - name: "Create Apache container"
+      docker_container:
+        name: webapp
+        image: httpd
+        ports:
+          - "8080:80"
+        volumes:
+          - /home/vagrant/index.html:/usr/local/apache2/htdocs/index.html
+
+    # Test d'accessibilité du site
+    - name: Waiting for all containers to start up and website to be accessible
+      wait_for:
+        host: localhost
+        port: 8080
+        timeout: 180
+      register: host_accessible
+      failed_when: False
+
+    - debug:
+        msg: "Site is reachable"
+      when: host_accessible.state is defined and host_accessible.state == "started"
+
+    - debug:
+        msg: "Site is NOT reachable"
+      when: host_accessible.state is defined and host_accessible.state == "stopped"
