@@ -18,15 +18,15 @@ Practical Ansible training as part of a DevOps training program.
 
 ## Aspects covered:
 
-- Ansible** inventory and variables
+- **Ansible inventory and variables**
 
-- Creating Asible playbooks** **Templates, loops and conditions
+- **Creating ansible playbook**
 
-- Templates, loops and conditions** **Security
+- **Templates, loops and conditions**
 
 - **Security**
 
-- Creating Ansible roles** **Ansible Tower/AWX
+- **Creating ansible roles**
 
 - **Ansible Tower/AWX**
 
